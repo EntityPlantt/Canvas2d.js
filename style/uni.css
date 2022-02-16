@@ -1,0 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+:root {
+	--theme: #0d1117;
+}
+body {
+	background: var(--theme);
+	color: white;
+	font-family: Montserrat;
+	margin: 0;
+}

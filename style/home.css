@@ -1,0 +1,38 @@
+body {
+	animation: floatDown 1s 1;
+	text-align: center;
+	width: 100%;
+	padding-top: 10vh;
+}
+div#title {
+	font-size: 10vh;
+}
+ul#contents {
+	list-style: none;
+	padding: 0;
+}
+ul#contents li {
+	padding: 5vh 0 5vh 0;
+	font-size: 5vh;
+	transition: background 0.6s, padding 0.6s;
+}
+ul#contents li:hover {
+	background: darkgray;
+	padding: 4vh 0 4vh 0;
+}
+ul#contents li a {
+	color: darkgray;
+	text-decoration: none;
+	transition: color 0.6s, font 0.6s;
+}
+ul#contents li:hover a {
+	color: var(--theme);
+	font-weight: bold;
+	font-size: 7vh;
+}
+@keyframes floatDown {
+	from {
+		padding-top: 0;
+		opacity: 0;
+	}
+}
