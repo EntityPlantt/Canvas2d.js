@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Canvas2d.js testing</title>
+	<script type="text/javascript" src="Canvas2d.js"></script>
+	<style type="text/css">
+		body, html {
+			margin: 0;
+			width: 100vw;
+			height: 100vh;
+		}
+		.hidden {
+			display: none;
+		}
+	</style>
+	<script type="text/javascript">
+		var canvas, sun, text;
+		onload = () => {
+			canvas = new Canvas2d.Scene(document.getElementById("canvas"));
+			canvas.background = "#d8d8d8";
+			sun = new Canvas2d.ImageAsset(document.getElementById("sun"), 300, 300);
+			canvas.add(sun);
+			text = new Canvas2d.TextAsset("The sun!", 0, 0, "100px Arial");
+			text.stroke = true;
+			text.align = "center";
+			text.baseline = "middle";
+			canvas.add(text);
+			function frame() {
+				requestAnimationFrame(frame);
+				text.x = innerWidth / 2;
+				text.y = innerHeight / 2;
+				sun.x = (innerWidth - sun.width) / 2;
+				sun.y = (innerHeight - sun.height) / 2;
+				sun.rotation++;
+				canvas.width = innerWidth;
+				canvas.height = innerHeight;
+				canvas.draw();
+			}
+			frame();
+		}
+	</script>
+</head>
+<body>
+	<canvas id="canvas"></canvas>
+	<img src="https://i.pinimg.com/originals/a5/38/8c/a5388cf7c3411dfebf0e1530ea4f6445.png" id="sun" class="hidden">
+</body>
+</html>
