@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <script src="../Canvas2d.js"></script>
+    <script>
+      var canvas;
+      onload = () => {
+      	canvas = new Canvas2d.Scene(document.getElementById("my-canvas"));
+        var text = new Canvas2d.TextAsset("Hi!");
+        canvas.add(text);
+        text.font = "bold 50px Arial";
+        text.baseline = "middle";
+        text.align = "center";
+        text.color = "red";
+        text.x = 100;
+        text.y = 100;
+        canvas.width = 200;
+        canvas.height = 200;
+        canvas.background = "black";
+        canvas.draw();
+      }
+    </script>
+  </head>
+  <body>
+    <canvas id="my-canvas"></canvas>
+  </body>
+</html>

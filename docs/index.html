@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Canvas2d.js/docs</title>
+	<link rel="stylesheet" type="text/css" href="../style/uni.css">
+	<link rel="stylesheet" type="text/css" href="../style/docs.css">
+	<link rel="stylesheet" type="text/css" href="../style/hljs.css">
+	<script src="index.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/highlight.min.js"></script>
+</head>
+<body>
+	<div id="navigation">
+		<ul id="contents">
+			<li id="back"><a href="..">Back</a></li>
+		</ul>
+	</div>
+	<div id="main">
+		<h1>Tutorial</h1>
+		<p>Want to start to code in Canvas2d.js? Then read these instructions.</p>
+		<p>Firstly, go to the <a href="..">main page</a> to download the JS file and write this code:</p>
+		<pre>
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+  &lt;head&gt;
+    &lt;meta charset="utf-8"&gt;
+    &lt;script src="Canvas2d.js"&gt;&lt;/script&gt;
+    &lt;script&gt;
+      // This is where we are going to do the JS code
+    &lt;/script&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;canvas id="my-canvas"&gt;&lt;/canvas&gt;
+  &lt;/body&gt;
+&lt;/html&gt;</pre>
+		<p>Note that there is no <code>&lt;script type="module"&gt;</code> in the script tag because Canvas2d.js is not a module.</p>
+		<p>Also, we need to run our JS code on page load, so we are going to add this in the script tag:</p>
+		<pre>
+onload = () => {
+  // Code
+}
+</pre>
+		<p>We can add a global variable named "canvas" that's gonna be the canvas object.<br>We'll initialize it in the onload event.</p>
+		<p><a href="#Canvas2d.Scene">Canvas2d.Scene</a> is a class for generating a scene. It has one optional parameter for the canvas that it'll be using. If not present, it'll create a new canvas.</p>
+		<p>Then, we can add text with the <a href="#Canvas2d.TextAsset">TextAsset</a> class.</p>
+		<p>Here's our code so far:</p>
+		<pre>
+var canvas;
+onload = () => {
+  canvas = new Canvas2d.Scene(document.getElementById("my-canvas"));
+  var text = new Canvas2d.TextAsset("Hi!");
+  canvas.add(text);
+}
+</pre>
+		<p>We can also change the text <a href="#Canvas2d.TextAsset.x">position</a>, <a href="#Canvas2d.TextAsset.font">font</a>, <a href="#Canvas2d.TextAsset.color">color</a>, <a href="#Canvas2d.TextAsset.baseline">baseline</a>, <a href="#Canvas2d.TextAsset.align">align</a>, and other.</p>
+		<pre class="language-js">
+text.font = "bold 50px Arial";
+text.baseline = "middle";
+text.align = "center";
+text.color = "red";
+text.x = 100;
+text.y = 100;
+</pre>
+		<p>But, we forgot the canvas. Let's adjust it, too.</p>
+		<pre class="language-js">
+canvas.width = 200;
+canvas.height = 200;
+canvas.background = "black";
+</pre>
+		<p>Now, our final step is to draw the canvas with <a href="#Canvas2d.Scene.draw"><code class="language-js">canvas.draw()</code></a>.<br>Congrats! We've created our first program with Canvas2d.js!</p>
+		<p>The final code:</p>
+		<pre>
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+  &lt;head&gt;
+    &lt;meta charset="utf-8"&gt;
+    &lt;script src="Canvas2d.js"&gt;&lt;/script&gt;
+    &lt;script&gt;
+      var canvas;
+      onload = () => {
+      	canvas = new Canvas2d.Scene(document.getElementById("my-canvas"));
+        var text = new Canvas2d.TextAsset("Hi!");
+        canvas.add(text);
+        text.font = "bold 50px Arial";
+        text.baseline = "middle";
+        text.align = "center";
+        text.color = "red";
+        text.x = 100;
+        text.y = 100;
+        canvas.width = 200;
+        canvas.height = 200;
+        canvas.background = "black";
+        canvas.draw();
+      }
+    &lt;/script&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;canvas id="my-canvas"&gt;&lt;/canvas&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+</pre>
+		<p>The result:</p>
+		<iframe src="../examples/hi.html" width="220" height="220"></iframe>
+
+		<!-- Canvas2d.Scene -->
+		<h1>Canvas2d.Scene</h1>
+		<p>This class is used to link a canvas to draw on.</p>
+		<h2>constructor <span>(?canvas: HTMLCanvasElement)</span></h2>
+		<p>Creates a new Canvas2d.Scene object.<br><span>canvas:</span> The canvas that's linked. If not present, creates a new one.</p>
+		<h2>width<span>: number</span></h2>
+		<p>The canvas width in pixels.</p>
+		<h2>height<span>: number</span></h2>
+		<p>The canvas height in pixels.</p>
+		<h2>assets<span>: Array</span></h2>
+		<p>All the <a href="#Canvas2d.Asset">assets</a> added in the canvas. Used internally by this class.</p>
+		<h2>background<span>: String</span></h2>
+		<p>A CSS value used for the canvas background. Default is <code>"white"</code>.</p>
+		<h2>add <span>(asset: Canvas2d.Asset): undefined</span></h2>
+		<p>Adds a new <a href="#Canvas2d.Asset">asset</a> in the canvas.<br>If the asset is present in another scene, it'll be removed from that one.<br><span>asset:</span> The asset to be added.</p>
+		<h2>remove <span>(asset: Canvas2d.Asset): undefined</span></h2>
+		<p>Removes an existing <a href="#Canvas2d.Asset">asset</a> in the canvas.<br><span>asset:</span> The asset to be removed.</p>
+		<h2>draw <span>(): undefined</span></h2>
+		<p>Draws all the assets by calling their draw method.</p>
+
+		<!-- Canvas2d.Asset -->
+		<h1>Canvas2d.Asset</h1>
+		<p>This is the parent of the asset classes, such as <a href="#Canvas2d.ImageAsset">ImageAsset</a>.</p>
+		<h2>constructor <span>()</span></h2>
+		<p>Creates a new Canvas2d.Asset object.</p>
+		<h2>parent<span>: Canvas2d.Scene</span></h2>
+		<p>The canvas this asset is in. Defaults to <code>null</code>.</p>
+		<h2>uuid<span>: String</span></h2>
+		<p>The asset UUID. Used in <a href="#Canvas2d.Scene.remove">Canvas2d.Scene.remove</a>.</p>
+
+		<!-- Canvas2d.ImageAsset -->
+		<h1>Canvas2d.ImageAsset</h1>
+		<p>Adds an image to the canvas.<br>Extends: <a href="#Canvas2d.Asset">Canvas2d.Asset</a></p>
+		<h2>constructor <span>(?image: Image, ?width: Number, ?height: Number)</span></h2>
+		<p>Creates a new Canvas2d.ImageAsset object.<br><span>image:</span> The image that'll be displayed. Defaults to <code>document.createElement("img")</code>.<br><span>width:</span> The image width. Defaults to 0.<br><span>height:</span> The image height. Defaults to 0.</p>
+		<h2>image<span>: Image</span></h2>
+		<p>The image DOM element. Created in <a href="#Canvas2d.ImageAsset.constructor">the constructor</a>.</p>
+		<h2>x<span>: Number</span></h2>
+		<p>The image X position on the canvas.</p>
+		<h2>y<span>: Number</span></h2>
+		<p>The image Y position on the canvas.</p>
+		<h2>width<span>: Number</span></h2>
+		<p>The image width. Assigned value in <a href="#Canvas2d.ImageAsset.constructor">the constructor</a>.</p>
+		<h2>height<span>: Number</span></h2>
+		<p>The image height. Assigned value in <a href="#Canvas2d.ImageAsset.constructor">the constructor</a>.</p>
+		<h2>rotation<span>: Number</span></h2>
+		<p>The image clockwise rotation (pivot point is image center) in degrees.</p>
+		<h2>draw <span>(): undefined</span></h2>
+		<p>Draws the image on the canvas. Called from <a href="#Canvas2d.Scene.draw">Canvas2d.Scene.draw</a>.</p>
+
+		<!-- Canvas2d.TextAsset -->
+		<h1>Canvas2d.TextAsset</h1>
+		<p>Adds text in the canvas.<br>Extends: <a href="#Canvas2d.Asset">Canvas2d.Asset</a></p>
+		<h2>constructor <span>(text: String, ?x: Number, ?y: Number, ?font: String, ?color: String)</span></h2>
+		<p>Creates a new Canvas2d.TextAsset object.<br><span>text:</span> The text that will be displayed.<br><span>x:</span> Text X position. Defaults to 0.<br><span>y:</span> Text Y position. Defaults to 0.<br><span>font:</span> A CSS font property used for the text font. Defaults to <code>"15px Arial"</code>.<br><span>color:</span> A CSS color property used for the text color. Defaults to <code>"black"</code>.</p>
+		<h2>text<span>: String</span></h2>
+		<p>The text to be displayed. Initialized in <a href="#Canvas2d.TextAsset.constructor">the constructor</a>.</p>
+		<h2>x<span>: Number</span></h2>
+		<p>The text X position. Initialized in <a href="#Canvas2d.TextAsset.constructor">the constructor</a>.</p>
+		<h2>y<span>: Number</span></h2>
+		<p>The text Y position. Initialized in <a href="#Canvas2d.TextAsset.constructor">the constructor</a>.</p>
+		<h2>font<span>: String</span></h2>
+		<p>The text CSS font. Initialized in <a href="#Canvas2d.TextAsset.constructor">the constructor</a>.</p>
+		<h2>color<span>: String</span></h2>
+		<p>The text CSS color. Initialized in <a href="#Canvas2d.TextAsset.constructor">the constructor</a>.</p>
+		<h2>align<span>: String</span></h2>
+		<p>The text CSS align property. Defaults to <code>"start"</code>.</p>
+		<h2>baseline<span>: String</span></h2>
+		<p>The text CSS baseline property. Defaults to <code>"alphabetic"</code>.</p>
+		<h2>stroke<span>: Boolean</span></h2>
+		<p>If true, the text will be stroked instead of filled. Defaults to <code>false</code>.</p>
+		<h2>draw <span>(): undefined</span></h2>
+		<p>Draws the text on the canvas. Called from <a href="#Canvas2d.Scene.draw">Canvas2d.Scene.draw</a>.</p>
+
+		<!-- Canvas2d.RectAsset -->
+		<h1>Canvas2d.RectAsset</h1>
+		<p>Adds a rectangle in the canvas.<br>Extends: <a href="#Canvas2d.Asset">Canvas2d.Asset</a></p>
+		<h2>constructor <span>(?x: Number, ?y: Number, ?width: Number, ?height: Number, ?color: String)</span></h2>
+		<p>Creates a new Canvas2d.RectAsset object.<br><span>x:</span> Rectangle X position. Defaults to 0.<br><span>y:</span> Rectangle Y position. Defaults to 0.<br><span>width:</span> Rectangle width. Defaults to 0.<br><span>height:</span> Rectangle height. Defaults to 0.<br><span>color:</span> A CSS color property used for the rectangle color. Defaults to <code>"black"</code>.</p>
+		<h2>x<span>: Number</span></h2>
+		<p>The rectangle X position. Initialized in <a href="#Canvas2d.RectAsset.constructor">the constructor</a>.</p>
+		<h2>y<span>: Number</span></h2>
+		<p>The rectangle Y position. Initialized in <a href="#Canvas2d.RectAsset.constructor">the constructor</a>.</p>
+		<h2>width<span>: Number</span></h2>
+		<p>The rectangle width. Initialized in <a href="#Canvas2d.RectAsset.constructor">the constructor</a>.</p>
+		<h2>height<span>: Number</span></h2>
+		<p>The rectangle height. Initialized in <a href="#Canvas2d.RectAsset.constructor">the constructor</a>.</p>
+		<h2>color<span>: String</span></h2>
+		<p>The rectangle CSS color. Initialized in <a href="#Canvas2d.RectAsset.constructor">the constructor</a>.</p>
+		<h2>stroke<span>: Boolean</span></h2>
+		<p>If true, the rectangle will be stroked instead of filled. Defaults to <code>false</code>.</p>
+		<h2>draw <span>(): undefined</span></h2>
+		<p>Draws the rectangle on the canvas. Called from <a href="#Canvas2d.Scene.draw">Canvas2d.Scene.draw</a>.</p>
+	</div>
+</body>
+</html>

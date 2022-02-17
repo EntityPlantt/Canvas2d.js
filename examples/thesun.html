@@ -16,7 +16,7 @@
 		}
 	</style>
 	<script type="text/javascript">
-		var canvas, sun, text;
+		var canvas, sun, text, rect;
 		onload = () => {
 			canvas = new Canvas2d.Scene(document.getElementById("canvas"));
 			canvas.background = "#d8d8d8";
@@ -27,8 +27,13 @@
 			text.align = "center";
 			text.baseline = "middle";
 			canvas.add(text);
+			rect = new Canvas2d.RectAsset(10, 10, 0, 0, "red");
+			rect.stroke = true;
+			canvas.add(rect);
 			function frame() {
 				requestAnimationFrame(frame);
+				rect.width = innerWidth - 20;
+				rect.height = innerHeight - 20;
 				text.x = innerWidth / 2;
 				text.y = innerHeight / 2;
 				sun.x = (innerWidth - sun.width) / 2;
