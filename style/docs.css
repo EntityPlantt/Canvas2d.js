@@ -17,6 +17,9 @@ ul#contents {
 	padding: 1vh 1vw 1vh 1vw;
 	margin: 0;
 }
+ul#contents li {
+	padding: 10px;
+}
 ul#contents li a {
 	text-decoration: none;
 	color: inherit;

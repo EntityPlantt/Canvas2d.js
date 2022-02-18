@@ -53,6 +53,9 @@ Canvas2d.Scene = class {
 			asset.draw();
 		});
 	}
+	get dataURL() {
+		return this.canvas.toDataURL();
+	}
 };
 Canvas2d.Asset = class {
 	constructor() {

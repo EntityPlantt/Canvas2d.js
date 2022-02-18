@@ -120,6 +120,8 @@ canvas.background = "black";
 		<p>All the <a href="#Canvas2d.Asset">assets</a> added in the canvas. Used internally by this class.</p>
 		<h2>background<span>: String</span></h2>
 		<p>A CSS value used for the canvas background. Default is <code>"white"</code>.</p>
+		<h2>dataURL<span>: String</span></h2>
+		<p>The canvas drawing into a data URL.</p>
 		<h2>add <span>(asset: Canvas2d.Asset): undefined</span></h2>
 		<p>Adds a new <a href="#Canvas2d.Asset">asset</a> in the canvas.<br>If the asset is present in another scene, it'll be removed from that one.<br><span>asset:</span> The asset to be added.</p>
 		<h2>remove <span>(asset: Canvas2d.Asset): undefined</span></h2>
@@ -198,7 +200,7 @@ canvas.background = "black";
 		<p>The rectangle CSS color. Initialized in <a href="#Canvas2d.RectAsset.constructor">the constructor</a>.</p>
 		<h2>stroke<span>: Boolean</span></h2>
 		<p>If true, the rectangle will be stroked instead of filled. Defaults to <code>false</code>.</p>
-		<h2>stroke<span>: Boolean</span></h2>
+		<h2>rotation<span>: Number</span></h2>
 		<p>The rectangle clockwise rotation (pivot point is image center) in degrees.</p>
 		<h2>draw <span>(): undefined</span></h2>
 		<p>Draws the rectangle on the canvas. Called from <a href="#Canvas2d.Scene.draw">Canvas2d.Scene.draw</a>.</p>

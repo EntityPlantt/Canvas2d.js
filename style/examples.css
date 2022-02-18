@@ -1,0 +1,43 @@
+div#sidebar {
+	width: 20vw;
+	height: 100vh;
+}
+div#title {
+	font-size: 30px;
+}
+#contents {
+	padding: 0;
+	list-style: none;
+}
+#contents li {
+	padding: 10px;
+	transition: background 0.6s;
+}
+#contents li a {
+	color: white;
+	text-decoration: none;
+	transition: color 0.6s, font-weight 0.6s;
+}
+#contents li:hover, #contents li.selected {
+	background: white;
+}
+#contents li:hover a, #contents li.selected a {
+	color: var(--theme);
+	font-weight: bold;
+}
+#main {
+	position: absolute;
+	width: 80vw;
+	height: 100vh;
+	border: 0;
+	top: 0;
+	right: 0;
+}
+@media (max-width: 600px) {
+	#sidebar {
+		display: none;
+	}
+	#main {
+		width: 100vw;
+	}
+}
