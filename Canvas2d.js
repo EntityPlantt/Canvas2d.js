@@ -70,11 +70,11 @@ Canvas2d.ImageAsset = class extends Canvas2d.Asset {
 		this.width = width;
 		this.height = height;
 	}
-	x = 0; y = 0; rotation = 0;
+	x = 0; y = 0; rotation = 0; posFromCenter = false;
 	draw() {
 		var ctx = this.parent.context;
 		ctx.save();
-		ctx.translate(this.x + this.width / 2, this.y + this.height / 2);
+		ctx.translate(this.x + (this.posFromCenter ? 0 : (this.width / 2)), this.y + (this.posFromCenter ? 0 : (this.height / 2)));
 		ctx.rotate(this.rotation * Math.PI / 180);
 		ctx.drawImage(this.image, this.width / -2, this.height / -2, this.width, this.height);
 		ctx.restore();
@@ -110,12 +110,12 @@ Canvas2d.RectAsset = class extends Canvas2d.Asset {
 		this.height = height;
 		this.color = color;
 	}
-	rotation = 0; stroke = false;
+	rotation = 0; stroke = false; posFromCenter = false;
 	draw() {
 		var ctx = this.parent.context;
 		ctx.save();
 		ctx[this.stroke ? "strokeStyle" : "fillStyle"] = this.color;
-		ctx.translate(this.x + this.width / 2, this.y + this.height / 2);
+		ctx.translate(this.x + (this.posFromCenter ? 0 : (this.width / 2)), this.y + (this.posFromCenter ? 0 : (this.height / 2)));
 		ctx.rotate(this.rotation * Math.PI / 180);
 		ctx[this.stroke ? "strokeRect" : "fillRect"](this.width / -2, this.height / -2, this.width, this.height);
 		ctx.restore();

@@ -156,6 +156,8 @@ canvas.background = "black";
 		<p>The image height. Assigned value in <a href="#Canvas2d.ImageAsset.constructor">the constructor</a>.</p>
 		<h2>rotation<span>: Number</span></h2>
 		<p>The image clockwise rotation (pivot point is image center) in degrees.</p>
+		<h2>posFromCenter<span>: Boolean</span></h2>
+		<p>If true, the <a href="#Canvas2d.ImageAsset.x">X</a> and <a href="#Canvas2d.ImageAsset.y">Y</a> will be the coordinates of the image center. Defaults to <code>false</code>.</p>
 		<h2>draw <span>(): undefined</span></h2>
 		<p>Draws the image on the canvas. Called from <a href="#Canvas2d.Scene.draw">Canvas2d.Scene.draw</a>.</p>
 
@@ -202,6 +204,8 @@ canvas.background = "black";
 		<p>If true, the rectangle will be stroked instead of filled. Defaults to <code>false</code>.</p>
 		<h2>rotation<span>: Number</span></h2>
 		<p>The rectangle clockwise rotation (pivot point is image center) in degrees.</p>
+		<h2>posFromCenter<span>: Boolean</span></h2>
+		<p>If true, the <a href="#Canvas2d.RectAsset.x">X</a> and <a href="#Canvas2d.RectAsset.y">Y</a> will be the coordinates of the rectangle center. Defaults to <code>false</code>.</p>
 		<h2>draw <span>(): undefined</span></h2>
 		<p>Draws the rectangle on the canvas. Called from <a href="#Canvas2d.Scene.draw">Canvas2d.Scene.draw</a>.</p>
 	</div>

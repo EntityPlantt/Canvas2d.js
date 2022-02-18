@@ -3,7 +3,6 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Canvas2d.js testing</title>
 	<script type="text/javascript" src="../Canvas2d.js"></script>
 	<style type="text/css">
 		body, html {
@@ -21,6 +20,7 @@
 			canvas = new Canvas2d.Scene(document.getElementById("canvas"));
 			canvas.background = "#d8d8d8";
 			sun = new Canvas2d.ImageAsset(document.getElementById("sun"), 300, 300);
+			sun.posFromCenter = true;
 			canvas.add(sun);
 			text = new Canvas2d.TextAsset("The sun!", 0, 0, "100px Arial");
 			text.stroke = true;
@@ -36,8 +36,8 @@
 				rect.height = innerHeight - 20;
 				text.x = innerWidth / 2;
 				text.y = innerHeight / 2;
-				sun.x = (innerWidth - sun.width) / 2;
-				sun.y = (innerHeight - sun.height) / 2;
+				sun.x = innerWidth / 2;
+				sun.y = innerHeight / 2;
 				sun.rotation++;
 				canvas.width = innerWidth;
 				canvas.height = innerHeight;
