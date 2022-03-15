@@ -121,4 +121,4 @@ Canvas2d.RectAsset = class extends Canvas2d.Asset {
 		ctx.restore();
 	}
 }
-module.exports.Canvas2d = Canvas2d;
+export {Canvas2d};
