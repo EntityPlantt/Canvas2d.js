@@ -208,6 +208,22 @@ canvas.background = "black";
 		<p>If true, the <a href="#Canvas2d.RectAsset.x">X</a> and <a href="#Canvas2d.RectAsset.y">Y</a> will be the coordinates of the rectangle center. Defaults to <code>false</code>.</p>
 		<h2>draw <span>(): undefined</span></h2>
 		<p>Draws the rectangle on the canvas. Called from <a href="#Canvas2d.Scene.draw">Canvas2d.Scene.draw</a>.</p>
+
+		<!-- Canvas2d.Parallax -->
+		<h1>Canvas2d.Parallax</h1>
+		<p>Adds a parallax effect image in the canvas stretching through the whole one.<br>Extends: <a href="#Canvas2d.Asset">Canvas2d.Asset</a></p>
+		<h2>constructor <span>(?image: Image, ?resizeBy: String)</span></h2>
+		<p>Creates a new Canvas2d.Parallax object.<br><span>image:</span> The repeating image. Defaults to <code>document.createElement("img")</code>.<br><span>resizeBy:</span> How to resize the image. Enumerator, defaults to <code>"none"</code>. <a href="#Canvas2d.Parallax.resizeBy">See more here.</a></p>
+		<h2>x<span>: Number</span></h2>
+		<p>The parallax X movement. Defaults to 0.</p>
+		<h2>y<span>: Number</span></h2>
+		<p>The parallax Y movement. Defaults to 0.</p>
+		<h2>image<span>: Image</span></h2>
+		<p>The parralax repeating image. Initialized in <a href="#Canvas2d.Parallax.constructor">the constructor</a>.</p>
+		<h2>resizeBy<span>: String</span></h2>
+		<p>How to resize the image. Initialized in <a href="#Canvas2d.Parallax.constructor">the constructor</a>.<br>It can be one of these three values:<br><code>"width"</code>: Resize the image to be the same width as <a href="#Canvas2d.Scene.width">the canvas width</a>.<br><code>"height"</code>: Resize the image to be the same height as <a href="#Canvas2d.Scene.height">the canvas height</a>.<br><code>"none"</code>: Don't resize the image, keep its original form. Useful when making tiled images.</p>
+		<h2>draw <span>(): undefined</span></h2>
+		<p>Draws the parallax on the canvas. Called from <a href="#Canvas2d.Scene.draw">Canvas2d.Scene.draw</a>.</p>
 	</div>
 </body>
 </html>

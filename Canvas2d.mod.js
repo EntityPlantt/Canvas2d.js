@@ -1,3 +1,15 @@
+/**
+ *
+ * @author      EntityPlantt
+ * @description A JavaScript API for better access to the HTML canvas
+ * @version     4
+ * @type        Plain JS module for Browser
+ * @license     Custom
+ * @perms       Use everywhere, even for commerical uses,
+ *              except don't re-distribuite the code without
+ *              granted permission to do that.
+ *
+**/
 var Canvas2d = new Object;
 Canvas2d.Scene = class {
 	assets = new Array;
@@ -121,4 +133,35 @@ Canvas2d.RectAsset = class extends Canvas2d.Asset {
 		ctx.restore();
 	}
 }
+Canvas2d.Parallax = class extends Canvas2d.Asset {
+	constructor(image = document.createElement("img"), resizeBy = "none") {
+		super();
+		this.image = image;
+		this.resizeBy = resizeBy;
+	}
+	x = 0; y = 0;
+	draw() {
+		var width = parseFloat(this.image.width),
+			height = parseFloat(this.image.height);
+		var resizeScale;
+		switch (this.resizeBy) {
+			case "height":
+			resizeScale = this.parent.height / height;
+			break;
+			case "width":
+			resizeScale = this.parent.width / width;
+			break;
+			default:
+			resizeScale = 1;
+		}
+		width *= resizeScale;
+		height *= resizeScale;
+		var ctx = this.parent.context;
+		for (var i = -1; i - 1 <= this.parent.width / width; i++) {
+			for (var j = -1; j - 1 <= this.parent.height / height; j++){
+				ctx.drawImage(this.image, -(this.x % width) + i * width, -(this.y % height) + j * height, width, height);
+			}
+		}
+	}
+};
 export {Canvas2d as default};
